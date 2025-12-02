@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Adicionar Produto — Restaurando</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Adicione novos itens ao cardápio do restaurante Restaurando."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="page-product">
+    <div class="main-shell">
+      <div id="toast-success" class="toast" aria-live="polite">
+        <span class="icon">✔</span>
+        <span data-testid="text-success-message">
+          Produto criado com sucesso!
+        </span>
+      </div>
+
+      <header class="header">
+        <div class="container">
+          <div class="header-inner">
+            <div class="brand">
+              <div class="brand-icon">
+                <span>🍽️</span>
+              </div>
+              <div class="brand-title">
+                <h1 data-testid="text-page-title">Sistema de Restaurante</h1>
+                <p>Painel de Gerenciamento — POO</p>
+              </div>
+            </div>
+            <div class="header-actions">
+              <button
+                id="theme-toggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Alternar tema"
+                data-testid="button-theme-toggle"
+              >
+                <span id="theme-toggle-icon">🌙</span>
+              </button>
+              <a href="./index.html">
+                <button
+                  class="button button-outline"
+                  type="button"
+                  data-testid="button-back-header"
+                >
+                  <span class="icon">←</span>
+                  <span>Voltar ao Painel</span>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div class="container" style="max-width: 640px;">
+          <section class="card">
+            <header class="card-header">
+              <div class="card-icon">
+                <span>📦</span>
+              </div>
+              <div class="card-header-text">
+                <h2 data-testid="text-form-title">Adicionar Novo Produto</h2>
+                <p>Crie um novo item para o cardápio do restaurante</p>
+              </div>
+            </header>
+
+            <form id="product-form" class="form-grid" novalidate>
+              <div>
+                <label class="label" for="name">
+                  <span class="icon">🏷️</span>
+                  <span>Nome do Produto</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  class="input"
+                  placeholder="Digite o nome do produto..."
+                  data-testid="input-product-name"
+                />
+                <p class="error-text" id="error-name" hidden></p>
+              </div>
+
+              <div>
+                <label class="label" for="price">
+                  <span class="icon">💲</span>
+                  <span>Preço</span>
+                </label>
+                <div class="input-prefix-wrapper">
+                  <span class="input-prefix">R$</span>
+                  <input
+                    id="price"
+                    name="price"
+                    class="input input-with-prefix"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="0.00"
+                    data-testid="input-product-price"
+                  />
+                </div>
+                <p class="error-text" id="error-price" hidden></p>
+              </div>
+
+              <div>
+                <label class="label" for="category">
+                  <span class="icon">📂</span>
+                  <span>Categoria</span>
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  class="select"
+                  data-testid="select-product-category"
+                >
+                  <option
+                    value="Entradas"
+                    data-testid="option-category-entradas"
+                  >
+                    Entradas
+                  </option>
+                  <option
+                    value="Prato Principal"
+                    data-testid="option-category-prato-principal"
+                  >
+                    Prato Principal
+                  </option>
+                  <option
+                    value="Sobremesas"
+                    data-testid="option-category-sobremesas"
+                  >
+                    Sobremesas
+                  </option>
+                  <option
+                    value="Bebidas"
+                    data-testid="option-category-bebidas"
+                  >
+                    Bebidas
+                  </option>
+                  <option
+                    value="Especiais"
+                    data-testid="option-category-especiais"
+                  >
+                    Especiais
+                  </option>
+                </select>
+                <p class="error-text" id="error-category" hidden></p>
+              </div>
+
+              <div class="form-actions">
+                <button
+                  type="submit"
+                  class="button"
+                  data-testid="button-save-product"
+                >
+                  <span class="icon">✔</span>
+                  <span>Salvar Produto</span>
+                </button>
+                <a href="./index.html">
+                  <button
+                    type="button"
+                    class="button button-outline"
+                    data-testid="button-back"
+                  >
+                    <span class="icon">←</span>
+                    <span>Voltar</span>
+                  </button>
+                </a>
+              </div>
+            </form>
+          </section>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <p>
+            Sistema de Gerenciamento de Restaurante — Demonstração POO
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

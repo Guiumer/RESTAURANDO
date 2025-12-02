@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sistema de Restaurante - Painel de Gerenciamento POO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Um sistema moderno de gerenciamento de restaurante demonstrando conceitos de POO. Acompanhe pedidos da cozinha com um quadro Kanban e gerencie produtos."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="page-dashboard">
+    <div class="main-shell">
+      <header class="header">
+        <div class="container">
+          <div class="header-inner">
+            <div class="brand">
+              <div class="brand-icon">
+                <span>🍽️</span>
+              </div>
+              <div class="brand-title">
+                <h1 data-testid="text-page-title">Restaurando</h1>
+                <p>Painel de Gerenciamento — POO</p>
+              </div>
+            </div>
+            <div class="header-actions">
+              <button
+                id="theme-toggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Alternar tema"
+                data-testid="button-theme-toggle"
+              >
+                <span id="theme-toggle-icon">🌙</span>
+              </button>
+              <a href="./product.html">
+                <button class="button" data-testid="button-create-product" type="button">
+                  <span class="icon">＋</span>
+                  <span>Criar Produto</span>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div class="container">
+          <section class="section-heading">
+            <h2 data-testid="text-section-title">Pedidos da Cozinha</h2>
+            <p>
+              Acompanhe e gerencie os pedidos do restaurante em diferentes etapas
+            </p>
+          </section>
+
+          <section class="kanban-grid" data-testid="kanban-board">
+            <!-- Coluna A Fazer -->
+            <div class="kanban-column" data-testid="column-todo">
+              <div class="kanban-column-header">
+                <div
+                  class="kanban-icon"
+                  style="background: linear-gradient(135deg, #f97316, #f59e0b);"
+                >
+                  
+                </div>
+                <h3 data-testid="text-column-title-todo">A Fazer</h3>
+                <div class="kanban-badge-count" data-testid="badge-column-count-todo">
+                  3
+                </div>
+              </div>
+              <div class="kanban-column-body">
+                <article
+                  class="task-card"
+                  data-testid="card-task-1"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-1"
+                  >
+                    Preparar Salada Caesar
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-1"
+                  >
+                    Alface romana fresca com molho caseiro
+                  </p>
+                  <div
+                    class="badge badge-chip badge-amber"
+                    data-testid="badge-task-category-1"
+                  >
+                    Entradas
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  data-testid="card-task-2"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-2"
+                  >
+                    Grelhar Bife Ancho
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-2"
+                  >
+                    Corte prime de 350g com legumes da estação
+                  </p>
+                  <div
+                    class="badge badge-chip badge-rose"
+                    data-testid="badge-task-category-2"
+                  >
+                    Prato Principal
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  data-testid="card-task-3"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-3"
+                  >
+                    Fazer Limonada
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-3"
+                  >
+                    Suco fresco para o serviço de hoje
+                  </p>
+                  <div
+                    class="badge badge-chip badge-sky"
+                    data-testid="badge-task-category-3"
+                  >
+                    Bebidas
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Em Andamento -->
+            <div class="kanban-column" data-testid="column-in_progress">
+              <div class="kanban-column-header">
+                <div
+                  class="kanban-icon"
+                  style="background: linear-gradient(135deg, #3b82f6, #06b6d4);"
+                >
+                  ⏱️
+                </div>
+                <h3 data-testid="text-column-title-in_progress">Em Andamento</h3>
+                <div
+                  class="kanban-badge-count"
+                  data-testid="badge-column-count-in_progress"
+                >
+                  2
+                </div>
+              </div>
+              <div class="kanban-column-body">
+                <article
+                  class="task-card"
+                  data-testid="card-task-4"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-4"
+                  >
+                    Preparar Carbonara
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-4"
+                  >
+                    Receita italiana tradicional com pancetta
+                  </p>
+                  <div
+                    class="badge badge-chip badge-rose"
+                    data-testid="badge-task-category-4"
+                  >
+                    Prato Principal
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  data-testid="card-task-5"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-5"
+                  >
+                    Preparar Bruschetta
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-5"
+                  >
+                    Tomate e manjericão no pão torrado
+                  </p>
+                  <div
+                    class="badge badge-chip badge-amber"
+                    data-testid="badge-task-category-5"
+                  >
+                    Entradas
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!--Concluído -->
+            <div class="kanban-column" data-testid="column-done">
+              <div class="kanban-column-header">
+                <div
+                  class="kanban-icon"
+                  style="background: linear-gradient(135deg, #10b981, #22c55e);"
+                >
+                  ✅
+                </div>
+                <h3 data-testid="text-column-title-done">Concluído</h3>
+                <div class="kanban-badge-count" data-testid="badge-column-count-done">
+                  3
+                </div>
+              </div>
+              <div class="kanban-column-body">
+                <article
+                  class="task-card"
+                  data-testid="card-task-6"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-6"
+                  >
+                    Montar Tiramisu
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-6"
+                  >
+                    Sobremesa italiana clássica para 10 porções
+                  </p>
+                  <div
+                    class="badge badge-chip badge-pink"
+                    data-testid="badge-task-category-6"
+                  >
+                    Sobremesas
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  data-testid="card-task-7"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-7"
+                  >
+                    Sopa do Chef
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-7"
+                  >
+                    Creme de cogumelos com azeite trufado
+                  </p>
+                  <div
+                    class="badge badge-chip badge-violet"
+                    data-testid="badge-task-category-7"
+                  >
+                    Especiais
+                  </div>
+                </article>
+
+                <article
+                  class="task-card"
+                  data-testid="card-task-8"
+                >
+                  <h4
+                    class="task-title"
+                    data-testid="text-task-title-8"
+                  >
+                    Espresso Martini
+                  </h4>
+                  <p
+                    class="task-desc"
+                    data-testid="text-task-description-8"
+                  >
+                    Coquetel especial para o serviço noturno
+                  </p>
+                  <div
+                    class="badge badge-chip badge-sky"
+                    data-testid="badge-task-category-8"
+                  >
+                    Bebidas
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <p>
+            Sistema de Gerenciamento de Restaurante — Demonstração POO
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
