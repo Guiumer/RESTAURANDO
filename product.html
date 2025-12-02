@@ -6,19 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Adicione novos itens ao cardápio do restaurante Restaurando."
+      content="Cadastro de produtos do cardápio do restaurante."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="page-product">
     <div class="main-shell">
-      <div id="toast-success" class="toast" aria-live="polite">
+      <!-- Toast -->
+      <div
+        id="toast-success"
+        class="toast"
+        aria-live="polite"
+      >
         <span class="icon">✔</span>
         <span data-testid="text-success-message">
           Produto criado com sucesso!
         </span>
       </div>
 
+      <!-- Header -->
       <header class="header">
         <div class="container">
           <div class="header-inner">
@@ -56,6 +62,7 @@
         </div>
       </header>
 
+      <!-- Main -->
       <main class="page-main">
         <div class="container" style="max-width: 640px;">
           <section class="card">
@@ -64,13 +71,21 @@
                 <span>📦</span>
               </div>
               <div class="card-header-text">
-                <h2 data-testid="text-form-title">Adicionar Novo Produto</h2>
-                <p>Crie um novo item para o cardápio do restaurante</p>
+                <h2
+                  class="card-title"
+                  data-testid="text-form-title"
+                >
+                  Adicionar Novo Produto
+                </h2>
+                <p class="card-subtitle">
+                  Crie um novo item para o cardápio do restaurante
+                </p>
               </div>
             </header>
 
             <form id="product-form" class="form-grid" novalidate>
-              <div>
+              <!-- Nome -->
+              <div class="form-field">
                 <label class="label" for="name">
                   <span class="icon">🏷️</span>
                   <span>Nome do Produto</span>
@@ -82,10 +97,15 @@
                   placeholder="Digite o nome do produto..."
                   data-testid="input-product-name"
                 />
-                <p class="error-text" id="error-name" hidden></p>
+                <p
+                  class="error-text"
+                  id="error-name"
+                  hidden
+                ></p>
               </div>
 
-              <div>
+              <!-- Preço -->
+              <div class="form-field">
                 <label class="label" for="price">
                   <span class="icon">💲</span>
                   <span>Preço</span>
@@ -103,10 +123,15 @@
                     data-testid="input-product-price"
                   />
                 </div>
-                <p class="error-text" id="error-price" hidden></p>
+                <p
+                  class="error-text"
+                  id="error-price"
+                  hidden
+                ></p>
               </div>
 
-              <div>
+              <!-- Categoria -->
+              <div class="form-field">
                 <label class="label" for="category">
                   <span class="icon">📂</span>
                   <span>Categoria</span>
@@ -148,9 +173,14 @@
                     Especiais
                   </option>
                 </select>
-                <p class="error-text" id="error-category" hidden></p>
+                <p
+                  class="error-text"
+                  id="error-category"
+                  hidden
+                ></p>
               </div>
 
+              <!-- Ações -->
               <div class="form-actions">
                 <button
                   type="submit"

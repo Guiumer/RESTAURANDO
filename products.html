@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Produtos Cadastrados — Restaurando</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Lista de produtos cadastrados no cardápio do restaurante."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="page-products">
+    <div class="main-shell">
+      <header class="header">
+        <div class="container">
+          <div class="header-inner">
+            <div class="brand">
+              <div class="brand-icon">
+                <span>🍽️</span>
+              </div>
+              <div class="brand-title">
+                <h1>Produtos Cadastrados</h1>
+                <p>Itens do cardápio registrados</p>
+              </div>
+            </div>
+            <div class="header-actions">
+              <button
+                id="theme-toggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Alternar tema"
+              >
+                <span id="theme-toggle-icon">🌙</span>
+              </button>
+              <a href="./product.html">
+                <button class="button" type="button">
+                  <span class="icon">＋</span>
+                  <span>Novo Produto</span>
+                </button>
+              </a>
+              <a href="./index.html">
+                <button class="button button-outline" type="button">
+                  <span class="icon">←</span>
+                  <span>Painel</span>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div class="container">
+          <section class="card">
+            <header class="card-header">
+              <div class="card-icon card-icon-soft">
+                <span>📋</span>
+              </div>
+              <div class="card-header-text">
+                <h2 class="card-title">Lista de Produtos</h2>
+                <p class="card-subtitle">
+                  Visualize e gerencie os produtos cadastrados
+                </p>
+              </div>
+            </header>
+
+            <div class="table-wrapper">
+              <table class="table" id="products-table">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th class="col-actions">Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="products-body"></tbody>
+              </table>
+              <p
+                id="no-products"
+                class="no-products-text"
+                hidden
+              >
+                Nenhum produto cadastrado ainda.
+              </p>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <p>
+            Sistema de Gerenciamento de Restaurante — Demonstração POO
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
