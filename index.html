@@ -4,83 +4,116 @@
     <meta charset="UTF-8" />
     <title>Sistema de Restaurante - Painel de Gerenciamento POO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Sistema de gerenciamento de restaurante com quadro Kanban e cadastro de produtos."
-    />
+    <meta name="description"
+      content="Sistema de gerenciamento de restaurante com quadro Kanban e cadastro de produtos." />
     <link rel="stylesheet" href="./styles.css" />
   </head>
+
   <body class="page-dashboard">
     <div class="main-shell">
+
+      
       <header class="header">
         <div class="container">
           <div class="header-inner">
+
             <div class="brand">
-              <div class="brand-icon">
-                <span>🍽️</span>
-              </div>
+              <div class="brand-icon"><span>🍽️</span></div>
               <div class="brand-title">
-                <h1 data-testid="text-page-title">Sistema de Restaurante</h1>
+                <h1>Sistema de Restaurante</h1>
                 <p>Painel de Gerenciamento — POO</p>
               </div>
             </div>
+
             <div class="header-actions">
-              <button
-                id="theme-toggle"
-                class="theme-toggle"
-                type="button"
-                aria-label="Alternar tema"
-                data-testid="button-theme-toggle"
-              >
+              <button id="theme-toggle" class="theme-toggle" type="button">
                 <span id="theme-toggle-icon">🌙</span>
               </button>
+
               <a href="./product.html">
-                <button class="button" data-testid="button-create-product" type="button">
-                  <span class="icon">＋</span>
-                  <span>Criar Produto</span>
-                </button>
+                <button class="button"><span class="icon">＋</span> Criar Produto</button>
               </a>
+
               <a href="./products.html">
-                <button class="button button-outline" type="button">
-                  <span class="icon">📦</span>
-                  <span>Ver Produtos</span>
+                <button class="button button-outline">
+                  <span class="icon">📦</span> Ver Produtos
                 </button>
               </a>
             </div>
+
           </div>
         </div>
       </header>
 
+      
       <main class="page-main">
         <div class="container">
-          <section class="section-heading">
-            <h2
-              class="section-title"
-              data-testid="text-section-title"
-            >
-              Pedidos da Cozinha
-            </h2>
-            <p class="section-subtitle">
-              Acompanhe e gerencie os pedidos do restaurante em diferentes etapas
-            </p>
+
+         
+          <section class="card">
+            <header class="card-header">
+              <h2 class="card-title">Produtos Cadastrados</h2>
+              <p class="card-subtitle">Lista de itens do cardápio</p>
+            </header>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Preço</th>
+                  <th>Categoria</th>
+                </tr>
+              </thead>
+
+              <tbody id="product-list">
+                
+              </tbody>
+            </table>
+
+            <div class="form-actions">
+              <a href="./product.html">
+                <button class="button">
+                  <span class="icon">+</span>
+                  <span>Adicionar Produto</span>
+                </button>
+              </a>
+            </div>
           </section>
 
-          <!-- Kanban vai ser preenchido via JS -->
-          <section
-            id="kanban-root"
-            class="kanban-grid"
-            data-testid="kanban-board"
-          ></section>
+          
+          <section class="kanban-old" style="margin-top: 40px;">
+            <h2 class="kanban-old-title">Painel da Cozinha — Kanban</h2>
+
+            <div class="kanban-old-board">
+
+              <div class="kanban-old-column">
+                <h3 class="kanban-old-header pend">Pendentes</h3>
+                <div id="old-col-pendente" class="kanban-old-list"></div>
+              </div>
+
+              <div class="kanban-old-column">
+                <h3 class="kanban-old-header prep">Em Preparo</h3>
+                <div id="old-col-preparo" class="kanban-old-list"></div>
+              </div>
+
+              <div class="kanban-old-column">
+                <h3 class="kanban-old-header pronto">Pronto</h3>
+                <div id="old-col-pronto" class="kanban-old-list"></div>
+              </div>
+
+            </div>
+          </section>
+
         </div>
       </main>
 
       <footer class="footer">
         <div class="container">
-          <p>
-            Sistema de Gerenciamento de Restaurante — Demonstração POO
-          </p>
+          <p>Sistema de Gerenciamento de Restaurante — Demonstração POO</p>
         </div>
       </footer>
+
     </div>
 
     <script src="./script.js"></script>
