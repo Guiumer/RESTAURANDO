@@ -731,3 +731,7 @@ body.dark .kanban-old-header.pronto { background: #23c063; }
 .prep-btn { background: #007bff; }
 .pronto-btn { background: #28a745; }
 .fim-btn { background: #dc3545; }
+
+.list { list-style: none; padding: 0; }
+.list-item { background: var(--card-bg); padding: 8px; margin-bottom: 8px; border-radius: 6px; display:flex; justify-content:space-between; align-items:center; }
+

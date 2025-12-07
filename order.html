@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Criar Pedido — Restaurando</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="page-order">
+  <div class="main-shell">
+    <header class="header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-icon">🍽️</div>
+          <div class="brand-title"><h1>Sistema de Restaurante</h1><p>Painel — Criar Pedido</p></div>
+        </div>
+        <div class="header-actions">
+          <a href="./index.html"><button class="button button-outline">← Voltar</button></a>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <div class="container" style="max-width:900px;">
+        <section class="card">
+          <header class="card-header">
+            <h2 class="card-title">Criar Pedido</h2>
+            <p class="card-subtitle">Selecione a mesa, produtos e quantidades</p>
+          </header>
+
+          <form id="order-form" class="form-grid" novalidate>
+            <div class="form-field">
+              <label for="mesa">Mesa</label>
+              <input id="mesa" type="number" min="1" value="1" class="input" />
+            </div>
+
+            <div class="form-field" style="grid-column: 1 / -1;">
+              <label for="produto-select">Produto</label>
+              <select id="produto-select" class="select"></select>
+            </div>
+
+            <div class="form-field">
+              <label for="quant">Quantidade</label>
+              <input id="quant" type="number" min="1" value="1" class="input" />
+            </div>
+
+            <div class="form-field" style="align-self:center;">
+              <button type="button" id="btn-add-item" class="button">Adicionar Item</button>
+            </div>
+
+            <div class="form-field" style="grid-column: 1 / -1;">
+              <h3>Itens do Pedido</h3>
+              <ul id="order-items" class="list"></ul>
+            </div>
+
+            <div class="form-actions" style="grid-column: 1 / -1;">
+              <button type="submit" class="button">Criar Pedido</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="./order_script.js"></script>
+</body>
+</html>

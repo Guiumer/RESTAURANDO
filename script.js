@@ -1,86 +1,36 @@
-const API_URL = "http://127.0.0.1:5000/api/produtos";
-
+// ==============================================
+// TEMA (CLARO / ESCURO) — ROXO MODERNO
+// ==============================================
 
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-toggle-icon");
-
-// Carrega o tema salvo
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-  if (themeIcon) themeIcon.textContent = "☀️";
-}
 
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
 
     if (document.body.classList.contains("dark")) {
-      if (themeIcon) themeIcon.textContent = "☀️";
-      localStorage.setItem("theme", "dark");
+      themeIcon.textContent = "☀️";
     } else {
-      if (themeIcon) themeIcon.textContent = "🌙";
-      localStorage.setItem("theme", "light");
+      themeIcon.textContent = "🌙";
     }
   });
 }
 
 
-const form = document.getElementById("product-form");
-const toast = document.getElementById("toast-success");
+// ==============================================
+// PRODUTOS — LISTAGEM NO INDEX
+// ==============================================
 
-if (form) {
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const nome = document.getElementById("name").value.trim();
-    const preco = Number(document.getElementById("price").value);
-    const categoria = document.getElementById("category").value;
-
-    if (!nome || !preco || !categoria) {
-      alert("Preencha todos os campos!");
-      return;
-    }
-
-    const produto = { nome, preco, categoria };
-
-    try {
-      const resp = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(produto),
-      });
-
-      if (!resp.ok) throw new Error("Erro ao salvar produto.");
-
-      const data = await resp.json();
-      console.log("Produto salvo:", data);
-
-      if (toast) {
-        toast.style.opacity = "1";
-        toast.style.transform = "translateY(0)";
-        setTimeout(() => {
-          toast.style.opacity = "0";
-          toast.style.transform = "translateY(-20px)";
-        }, 3000);
-      }
-
-      form.reset();
-
-    } catch (error) {
-      console.error(error);
-      alert("Erro ao conectar com o backend!");
-    }
-  });
-}
-
+const API_URL = "http://127.0.0.1:5000/api/produtos";
 
 async function carregarProdutos() {
-  const tabela = document.getElementById("product-list");
-  if (!tabela) return;
-
   try {
     const resp = await fetch(API_URL);
     const data = await resp.json();
+
+    const tabela = document.getElementById("product-list");
+    if (!tabela) return;
 
     tabela.innerHTML = "";
 
@@ -89,23 +39,39 @@ async function carregarProdutos() {
         <tr>
           <td>${prod.id}</td>
           <td>${prod.nome}</td>
-          <td>R$ ${prod.preco.toFixed(2)}</td>
+          <td>R$ ${Number(prod.preco).toFixed(2)}</td>
           <td>${prod.categoria}</td>
-        </tr>`;
+        </tr>
+      `;
     });
+
   } catch (err) {
     console.error("Erro ao carregar produtos:", err);
   }
 }
 
+document.addEventListener("DOMContentLoaded", carregarProdutos);
 
-let pedidosAntigos = [
-  { id: 1, mesa: 2, item: "X-Burger", status: "pendente" },
-  { id: 2, mesa: 4, item: "Pizza Portuguesa", status: "preparo" },
-  { id: 3, mesa: 1, item: "Refrigerante", status: "pronto" }
-];
 
-function renderKanban() {
+// ==============================================
+// KANBAN — PEDIDOS REAIS DO BACKEND
+// ==============================================
+
+const API_PEDIDOS = "http://127.0.0.1:5000/api/pedidos";
+
+// Carrega pedidos do backend
+async function carregarKanban() {
+  try {
+    const resp = await fetch(API_PEDIDOS);
+    const pedidos = await resp.json();
+    renderKanban(pedidos);
+  } catch (err) {
+    console.error("Erro ao carregar pedidos:", err);
+  }
+}
+
+// Renderiza o Kanban com dados verdadeiros
+function renderKanban(pedidos) {
   const colP = document.getElementById("old-col-pendente");
   const colR = document.getElementById("old-col-preparo");
   const colT = document.getElementById("old-col-pronto");
@@ -116,15 +82,19 @@ function renderKanban() {
   colR.innerHTML = "";
   colT.innerHTML = "";
 
-  pedidosAntigos.forEach(p => {
+  pedidos.forEach(p => {
     const card = document.createElement("div");
     card.classList.add("kanban-old-card");
 
+    const itens = p.itens
+      .map(i => `${i.nome} x ${i.quantidade}`)
+      .join("<br>");
+
     card.innerHTML = `
       <strong>Pedido #${p.id}</strong><br>
-      Mesa: ${p.mesa}<br>
-      Item: ${p.item}<br><br>
-      ${gerarBotao(p)}
+      Mesa: ${p.mesa}<br><br>
+      ${itens}<br><br>
+      ${gerarBotaoKanban(p)}
     `;
 
     if (p.status === "pendente") colP.appendChild(card);
@@ -133,39 +103,34 @@ function renderKanban() {
   });
 }
 
-function gerarBotao(p) {
+// Gera botão conforme status do pedido
+function gerarBotaoKanban(p) {
   if (p.status === "pendente") {
-    return `<button onclick="moverParaPreparo(${p.id})" class="kanban-btn prep-btn">Mover para Preparo</button>`;
+    return `<button onclick="moverStatus(${p.id}, 'preparo')" class="kanban-btn prep-btn">Mover para Preparo</button>`;
   }
   if (p.status === "preparo") {
-    return `<button onclick="moverParaPronto(${p.id})" class="kanban-btn pronto-btn">Mover para Pronto</button>`;
+    return `<button onclick="moverStatus(${p.id}, 'pronto')" class="kanban-btn pronto-btn">Mover para Pronto</button>`;
   }
   if (p.status === "pronto") {
-    return `<button onclick="finalizarPedido(${p.id})" class="kanban-btn fim-btn">Finalizar</button>`;
+    return `<button onclick="moverStatus(${p.id}, 'finalizado')" class="kanban-btn fim-btn">Finalizar</button>`;
   }
 }
 
-function moverParaPreparo(id) {
-  pedidosAntigos = pedidosAntigos.map(p =>
-    p.id === id ? { ...p, status: "preparo" } : p
-  );
-  renderKanban();
+// Atualiza o status do pedido no backend
+async function moverStatus(id, novoStatus) {
+  try {
+    await fetch(`${API_PEDIDOS}/${id}/status`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: novoStatus })
+    });
+
+    carregarKanban(); // atualiza após mudar status
+  } catch (err) {
+    console.error("Erro ao atualizar status:", err);
+  }
 }
 
-function moverParaPronto(id) {
-  pedidosAntigos = pedidosAntigos.map(p =>
-    p.id === id ? { ...p, status: "pronto" } : p
-  );
-  renderKanban();
-}
-
-function finalizarPedido(id) {
-  pedidosAntigos = pedidosAntigos.filter(p => p.id !== id);
-  renderKanban();
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  carregarProdutos();
-  renderKanban();
-});
+// Atualiza o Kanban automaticamente de 3 em 3 segundos
+setInterval(carregarKanban, 3000);
+document.addEventListener("DOMContentLoaded", carregarKanban);
